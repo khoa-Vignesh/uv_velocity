@@ -41,11 +41,11 @@ if ((Positive ==1) && (Negative==1))
 		high_v=ceil(v(i,j));
 		indices_1 = (min_v_s + low_v);	
 		indices_2 = (min_v_s + high_v);	
-	   if (indices_1 ~= indices_2)
-			vy_NP(i,indices_1)=vy_NP(i,indices_1)+w(i,j);
-			vy_NP(i,indices_2)=vy_NP(i,indices_2)+w(i,j);
+	if (indices_1 ~= indices_2)
+		vy_NP(i,indices_1)=vy_NP(i,indices_1)+w(i,j);
+		vy_NP(i,indices_2)=vy_NP(i,indices_2)+w(i,j);
        else 
-			vy_NP(i,index1(i,j))=vy_NP(i,index1(i,j)) + w(i,j);
+		vy_NP(i,index1(i,j))=vy_NP(i,index1(i,j)) + w(i,j);
        end
 	end
   end
