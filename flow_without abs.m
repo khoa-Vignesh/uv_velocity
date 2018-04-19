@@ -50,7 +50,7 @@ if ((Positive ==1) && (Negative==1))
 	end
   end
 figure(1)
-imshow(vy_NP,[])
+imshow(vy_NP)
 
 elseif ((Positive ==1) && (Negative==0))
   for i=1:rows
