@@ -4,12 +4,12 @@ addpath(genpath('..'))
 % Load optical flow:
 uv = readFlowFile('000000.flo');
 %optical flow figures
-u1=flow(:,:,1);
-v1=flow(:,:,2);
+u1=uv(:,:,1);
+v1=uv(:,:,2);
 %changing the direction of v1 to v(ie, +ve to -ve) also giving the scale value to give a better resolution
 % Convert back to camera axis
 scale=1;
-v=(-v1).* scale;
+v=(v1).* scale;
 %voting space variables
 rows = size(v,1);
 columns =size(v,2);
