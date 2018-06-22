@@ -19,6 +19,7 @@ global scale;
 scale = 1;
 [ux,vy]=create_voting_space(uv,scale);
 % seg_r = plan_detection(img,vy,187,uv(:,:,2));
+seg_r = parabolaabc(img,vy,187,uv(:,:,2));
 figure(2)
 subplot(1,2,1)
 imshow(vy)
