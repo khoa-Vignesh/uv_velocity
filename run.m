@@ -1,5 +1,5 @@
 addpath(genpath('..'))
-% addpath('..')
+%addpath('../../')
 clear all;
 % Load optical flow:
 uv = readFlowFile('000000.flo');
@@ -10,22 +10,31 @@ low_v_E =floor(v(:,:));
 high_v_E=ceil(v(:,:));
 
 displayImg = imread('img1.png');
-plotFlow(u, v, displayImg, 10, 25);
-hold on
-% img = imread('C:\Users\MAI\Dropbox\new code\Matlab\KITTI Test\000000_10.png');
-% img = double(img)/255;
+%plotFlow(u, v, displayImg, 10, 25);
+%hold on
+
 img = double(displayImg)./255;
 global scale;
 scale = 1;
 [ux,vy]=create_voting_space(uv,scale);
-% seg_r = plan_detection(img,vy,187,uv(:,:,2));
-seg_r = parabolaabc(img,vy,187,uv(:,:,2));
-figure(2)
-subplot(1,2,1)
-imshow(vy)
-subplot(1,2,2)
-imshow(ux)
 
+%% seg_r = plan_detection(img,vy,187,uv(:,:,2));
+
+seg_r = parabolaabc(img,vy,187,uv(:,:,2));
+
+foe =187;
+voting_space=vy;
+H_v = size(voting_space,1);
+voting_space(:,1)=0;
+voting_space_rethresh=voting_space;
+h_down = voting_space_rethresh(foe:H_v,:);
+figure(212)
+imshow(h_down)
+% figure(2)
+% subplot(1,2,1)
+% imshow(vy)
+% subplot(1,2,2)
+% imshow(ux)
 rows = size(h_down,1);
 columns = size(h_down,2);
 
@@ -47,8 +56,5 @@ end
 % y = y(mask)
 
 data =[x';y'];
- figure;plot(data(1,:),data(2,:),'o');
 
-% ransac = ransac(data,num,iter,threshDist,inlierRatio)
-%[bestParameter1,bestParameter2] = ransac(data,3,100,10,0.1);
-
+[bestParameter1,bestParameter2,bestParameter3] = ransac(data,3,100,10,0.1);
